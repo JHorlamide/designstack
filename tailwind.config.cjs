@@ -21,14 +21,12 @@ module.exports = {
       white: "#FFFFFF",
       blue: "#4977FF",
       gray: "#94A9AC",
-      green: "#3EE8B5",
-      yellow: "#ECC80F",
-      "semi-gray": "#6F767E",
+      black: "#000000",
       "dark-gray": "#333333",
-      "dark-blue": "#263959",
       "light-gray": "#F4F4F4",
       "light-black": "#272930",
       "text-gray": "#202026",
+      "light-yellow": "#FFB562",
     },
 
     backgroundImage: {

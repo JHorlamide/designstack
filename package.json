@@ -10,9 +10,11 @@
   },
   "dependencies": {
     "@headlessui/react": "^1.7.8",
+    "framer-motion": "^8.5.5",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-hot-toast": "^2.4.0",
+    "react-intersection-observer": "^9.4.1",
     "react-media": "^1.10.0",
     "react-router-dom": "^6.8.0"
   },

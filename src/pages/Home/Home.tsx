@@ -3,13 +3,7 @@ import Navbar from "../../components/Navbar/Navbar";
 import CustomBtn from "../../components/CustomBtn/CustomBtn";
 import ScrollIndicator from "../../assets/images/scroll_indication.png";
 import HeroVerticalLine from "../../assets/icons/hero_line.svg";
-
-// import AmazonLogo from "../../../public/images/Amazon.png";
-// import FacebookLogo from "../../../public/images/Facebook.png";
-// import GoogleLogo from "../../../public/images/Google.png";
-// import LinkedInLogo from "../../../public/images/LinkedIn.png";
-// import LogiTech from "../../../public/images/Logitech.png";
-// import PhilipsLogo from "../../../public/images/Philips.png";
+import Portfolio from "./Portfolio/Portfolio";
 
 const Home = () => {
   return (
@@ -71,57 +65,106 @@ const Home = () => {
           </div>
         </div>
       </section>
+      {/* Companies */}
+      <section
+        className="overflow-x-scroll scroll-smooth bg-dark-gray w-full h-[62.79px] flex justify-start items-center space-x-5
+        md:justify-center md:overflow-hidden md:space-x-10 md:h-[140px]"
+      >
+        <div className="w-[80.14px] h-[25px] flex-shrink-0 mt-3 md:w-[172px] md:h-[34px]">
+          <img
+            src={"/Amazon.png"}
+            alt="amazon-logo"
+            className="w-full h-full"
+          />
+        </div>
 
-      <section className="flex justify-center items-center bg-dark-gray w-full h-[62.79px]">
-        <div className="overflow-x-auto scroll-smooth">
-          <div className="flex items-center space-x-5">
-            <div className="w-[77.14px] h-[15.25px] flex-shrink-0">
-              <img
-                src={"/Amazon.png"}
-                alt="amazon-logo"
-                className="w-full h-full"
-              />
+        <div className="w-[68.17px] h-[19.46px] flex-shrink-0  md:w-[152px] md:h-[30px]">
+          <img
+            src={"/Facebook.png"}
+            alt="amazon-logo"
+            className="w-full h-full"
+          />
+        </div>
+
+        <div className="w-[57.41px] h-[18.84px] flex-shrink-0  md:w-[128px] md:h-[42px]">
+          <img
+            src={"/Google.png"}
+            alt="amazon-logo"
+            className="w-full h-full"
+          />
+        </div>
+
+        <div className="w-[70.42px] h-[18.39px] flex-shrink-0  md:w-[157px] md:h-[41px]">
+          <img
+            src={"LinkedIn.png"}
+            alt="amazon-logo"
+            className="w-full h-full"
+          />
+        </div>
+
+        <div className="w-[60.55px] h-[17.94px] flex-shrink-0  md:w-[135px] md:h-[40px]">
+          <img
+            src={"/Logitech.png"}
+            alt="amazon-logo"
+            className="w-full h-full"
+          />
+        </div>
+
+        <div className="w-[60.55px] h-[17.94px]  md:w-[142px] md:h-[26px] flex-shrink-0">
+          <img
+            src={"/Philips.png"}
+            alt="amazon-logo"
+            className="w-full h-full"
+          />
+        </div>
+      </section>
+
+      {/* Recent work */}
+      <section className="relative bg-black py-10 md:py-32 z-0">
+        <img
+          src="vector_mobile.png"
+          alt=""
+          className="md:hidden absolute inset-y-0 top-10"
+        />
+
+        <img
+          src="vector_desktop.png"
+          alt=""
+          className="hidden md:flex absolute inset-y-0 -top-14"
+        />
+
+        <div
+          className="flex flex-col space-y-10 justify-center items-center 
+          md:justify-start md:items-start"
+        >
+          <div
+            className="flex flex-col justify-center space-y-2 space-x-0 md:space-y-0
+            md:space-x-10 md:flex-row md:justify-start md:items-center md:container 
+            md:ml-28"
+          >
+            <div
+              className="space-y-4 flex flex-col justify-center items-center 
+              md:space-y-0 md:space-x-16 md:flex-row md:justify-start"
+            >
+              <hr className="h-2 bg-white w-10 md:w-0.5 md:h-[48px] md:flex md:items-center" />
+              <h1 className="text-3xl font-bold text-white">
+                Recent{" "}
+                <span className="text-light-yellow md:text-white">works</span>
+              </h1>
             </div>
 
-            <div className="w-[68.17px] h-[13.46px] flex-shrink-0">
-              <img
-                src={"/Facebook.png"}
-                alt="amazon-logo"
-                className="w-full h-full"
-              />
-            </div>
+            <hr className="hidden md:flex w-[1px] h-[96px] bg-gray" />
 
-            <div className="w-[57.41px] h-[18.84px] flex-shrink-0">
-              <img
-                src={"/Google.png"}
-                alt="amazon-logo"
-                className="w-full h-full"
-              />
-            </div>
+            <p className="text-gray text-[14px] text-center font-medium mx-12 max-w-xs md:text-start md:text-[20px]">
+              Design as you know it is out the door. Design as you want it just
+              arrived.
+            </p>
+          </div>
 
-            <div className="w-[70.42px] h-[18.39px] flex-shrink-0">
-              <img
-                src={"LinkedIn.png"}
-                alt="amazon-logo"
-                className="w-full h-full"
-              />
-            </div>
-
-            <div className="w-[60.55px] h-[17.94px] flex-shrink-0">
-              <img
-                src={"/Logitech.png"}
-                alt="amazon-logo"
-                className="w-full h-full"
-              />
-            </div>
-
-            <div className="w-[60.55px] h-[17.94px] flex-shrink-0">
-              <img
-                src={"/Philips.png"}
-                alt="amazon-logo"
-                className="w-full h-full"
-              />
-            </div>
+          <div className="overflow-x-auto scroll-smooth flex space-x-5 pt-2 w-full md:overflow-x-hidden">
+            <Portfolio imageUrl="/portfolio_3.png" />
+            <Portfolio imageUrl="/main_portfolio.png" />
+            <Portfolio imageUrl="/portfolio_2.png" />
           </div>
         </div>
       </section>
