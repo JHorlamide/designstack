@@ -1,0 +1,16 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+
+@layer base {
+  @font-face {
+    font-family: "Akzentica4F";
+    src: url('/public/assets/font/Akzentica4F.ttf'),
+    url('/public/assets/font/Akzentica4F-Bold.ttf'),
+    url('/public/assets/font/Akzentica4FExtraBold.ttf'),
+    url('/public/assets/font/Akzentica4FMedium.ttf'),
+    url('/public/assets/font/Akzentica4FSemiBold.ttf');
+    font-style: normal;
+  }
+}
