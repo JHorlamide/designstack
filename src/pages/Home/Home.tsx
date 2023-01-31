@@ -4,21 +4,21 @@ import CustomBtn from "../../components/CustomBtn/CustomBtn";
 import ScrollIndicator from "../../assets/images/scroll_indication.png";
 import HeroVerticalLine from "../../assets/icons/hero_line.svg";
 
-import AmazonLogo from "../../assets/images/Amazon.png";
-import FacebookLogo from "../../assets/images/Facebook.png";
-import GoogleLogo from "../../assets/images/Google.png";
-import LinkedInLogo from "../../assets/images/LinkedIn.png";
-import LogiTech from "../../assets/images/Logitech.png";
-import PhilipsLogo from "../../assets/images/Philips.png";
+// import AmazonLogo from "../../../public/images/Amazon.png";
+// import FacebookLogo from "../../../public/images/Facebook.png";
+// import GoogleLogo from "../../../public/images/Google.png";
+// import LinkedInLogo from "../../../public/images/LinkedIn.png";
+// import LogiTech from "../../../public/images/Logitech.png";
+// import PhilipsLogo from "../../../public/images/Philips.png";
 
 const Home = () => {
   return (
     <Fragment>
-      <section className="relative bg-none md:bg-heroBg w-full h-full md:h-[800px] object-cover bg-center">
+      <section className="relative bg-none md:bg-[url('/hero_bg.png')] w-full h-full md:h-[800px] object-cover bg-center">
         <Navbar />
 
         {/* Mobile Hero */}
-        <div className="md:hidden bg-heroBgMobile bg-no-repeat w-full h-[545px] bg-cover">
+        <div className="md:hidden bg-[url('/mobile_hero.png')] bg-no-repeat w-full h-[545px] bg-cover">
           <div className="flex flex-col justify-center items-center space-y-6">
             <div className="container mx-auto flex flex-col justify-center items-center px-3 py-16 space-y-5">
               <h1 className="text-3xl font-bold text-center">
@@ -77,7 +77,7 @@ const Home = () => {
           <div className="flex items-center space-x-5">
             <div className="w-[77.14px] h-[15.25px] flex-shrink-0">
               <img
-                src={AmazonLogo}
+                src={"/Amazon.png"}
                 alt="amazon-logo"
                 className="w-full h-full"
               />
@@ -85,7 +85,7 @@ const Home = () => {
 
             <div className="w-[68.17px] h-[13.46px] flex-shrink-0">
               <img
-                src={FacebookLogo}
+                src={"/Facebook.png"}
                 alt="amazon-logo"
                 className="w-full h-full"
               />
@@ -93,7 +93,7 @@ const Home = () => {
 
             <div className="w-[57.41px] h-[18.84px] flex-shrink-0">
               <img
-                src={GoogleLogo}
+                src={"/Google.png"}
                 alt="amazon-logo"
                 className="w-full h-full"
               />
@@ -101,19 +101,23 @@ const Home = () => {
 
             <div className="w-[70.42px] h-[18.39px] flex-shrink-0">
               <img
-                src={LinkedInLogo}
+                src={"LinkedIn.png"}
                 alt="amazon-logo"
                 className="w-full h-full"
               />
             </div>
 
             <div className="w-[60.55px] h-[17.94px] flex-shrink-0">
-              <img src={LogiTech} alt="amazon-logo" className="w-full h-full" />
+              <img
+                src={"/Logitech.png"}
+                alt="amazon-logo"
+                className="w-full h-full"
+              />
             </div>
 
             <div className="w-[60.55px] h-[17.94px] flex-shrink-0">
               <img
-                src={PhilipsLogo}
+                src={"/Philips.png"}
                 alt="amazon-logo"
                 className="w-full h-full"
               />
