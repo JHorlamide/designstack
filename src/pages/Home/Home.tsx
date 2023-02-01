@@ -147,7 +147,7 @@ const Home = () => {
               md:space-y-0 md:space-x-16 md:flex-row md:justify-start"
             >
               <hr className="h-2 bg-white w-10 md:w-0.5 md:h-[48px] md:flex md:items-center" />
-              <h1 className="text-3xl font-bold text-white">
+              <h1 className="text-3xl font-bold text-white max-w-2xl">
                 Recent{" "}
                 <span className="text-light-yellow md:text-white">works</span>
               </h1>
@@ -155,16 +155,33 @@ const Home = () => {
 
             <hr className="hidden md:flex w-[1px] h-[96px] bg-gray" />
 
-            <p className="text-gray text-[14px] text-center font-medium mx-12 max-w-xs md:text-start md:text-[20px]">
+            <p className="text-gray text-[16px] text-center font-medium mx-12 max-w-xs md:text-start md:text-[20px]">
               Design as you know it is out the door. Design as you want it just
               arrived.
             </p>
           </div>
 
-          <div className="overflow-x-auto scroll-smooth flex space-x-5 pt-2 w-full md:overflow-x-hidden">
-            <Portfolio imageUrl="/portfolio_3.png" />
-            <Portfolio imageUrl="/main_portfolio.png" />
-            <Portfolio imageUrl="/portfolio_2.png" />
+          <div
+            className="overflow-x-scroll scroll-smooth scrollbar-hide flex space-x-5 pt-2 w-full 
+            md:space-x-0 md:overflow-x-hidden md:justify-center md:items-center"
+          >
+            <Portfolio
+              imageUrl="/portfolio_3.png"
+              width="w-full md:w-[575px]"
+              height="h-full h-[431.25px]"
+            />
+
+            <Portfolio
+              imageUrl="/main_portfolio.png"
+              width="w-full md:w-[850px]"
+              height="h-full md:h-[716px]"
+            />
+
+            <Portfolio
+              imageUrl="/portfolio_2.png"
+              width="w-full md:w-[575px]"
+              height="h-full h-[431.25px]"
+            />
           </div>
         </div>
       </section>

@@ -27,12 +27,12 @@ export default function Portfolio({ imageUrl, width, height }: IPortfolio) {
 
   return (
     <motion.div
-      className="flex-shrink-0 w-full h-full"
+      className={`flex-shrink-0 ${width} ${height}`}
       ref={ref}
       variants={boxVariant}
       initial={{ opacity: 0, scale: 1 }}
       animate={control}
-      whileInView={{ opacity: 1, scale: 5 }}
+      whileInView={{ opacity: 1, scale: 2 }}
     >
       <img
         src={imageUrl}
