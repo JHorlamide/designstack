@@ -32,6 +32,8 @@ module.exports = {
     backgroundImage: {
       heroBg: "url('./src/assets/images/hero_bg.png')",
       heroBgMobile: "url('./src/assets/images/mobile_hero.png')",
+      blueHeroBg: "url('/public/blue_hero.png')",
+      mobileBlueHeroBg: "url('/public/mobile_blue_hero.png')",
     },
 
     extend: {},

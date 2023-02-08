@@ -32,7 +32,7 @@ export default function Portfolio({ imageUrl, width, height }: IPortfolio) {
       variants={boxVariant}
       initial={{ opacity: 0, scale: 1 }}
       animate={control}
-      whileInView={{ opacity: 1, scale: 2 }}
+      whileInView={{ opacity: 1, scale: 4 }}
     >
       <img
         src={imageUrl}
