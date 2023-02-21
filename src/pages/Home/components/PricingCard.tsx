@@ -8,27 +8,52 @@ interface PricingCardProps {
   paymentPlan: string;
   planDetails: string;
   planFeature: string[];
-  recommendPlan?: string;
+  recommendPlan?: boolean;
 }
 
 const PricingCard = (props: PricingCardProps) => {
-  const { headingColor, amount, plan, paymentPlan, planDetails, planFeature } =
-    props;
+  const {
+    headingColor,
+    amount,
+    plan,
+    paymentPlan,
+    planDetails,
+    planFeature,
+    recommendPlan,
+  } = props;
 
   return (
-    <div className="container mx-auto px-5 py-5">
-      <div
-        className={`${headingColor} flex flex-col space-y-1 justify-center items-center px-10 py-12`}
-      >
-        <h1 className="text-white text-3xl font-bold">{amount}</h1>
-        <p className="text-white text-xs">{paymentPlan}</p>
+    <div
+      className={`container mx-auto px-5 py-5 md:container-none md:mx-0 md:w-[379px]`}
+    >
+      <div className={`${headingColor}`}>
+        {recommendPlan && (
+          <div className="pt-4 md:pb-20">
+            <div className="w-full bg-black opacity-[0.17] py-3 flex justify-center items-center">
+              <p className="text-center text-white capitalize">
+                recommended for you
+              </p>
+            </div>
+          </div>
+        )}
+
+        <div className="flex flex-col space-y-1 justify-center items-center px-10 py-12">
+          <div>
+            <h1 className="text-white text-3xl font-bold">{amount}</h1>
+            <p className="text-white text-xs">{paymentPlan}</p>
+          </div>
+        </div>
       </div>
 
       <div className="bg-light-black py-12">
-        <div className="container mx-auto bg-white w-72 -mt-20">
-          <div className="flex flex-col justify-center items-center px-12 py-[20px]">
+        <div className="container mx-auto bg-white w-64 -mt-20">
+          <div className="flex flex-col justify-center items-center px-12 py-[20px] md:py-2">
             <h1 className="text-xl text-center font-semibold">{plan}</h1>
-            <p className="text-gray text-center whitespace-pre-line">
+            <p
+              className={`text-gray text-center whitespace-pre-line md:whitespace-nowrap ${
+                recommendPlan && "md:whitespace-pre-line"
+              }`}
+            >
               {planDetails}
             </p>
           </div>

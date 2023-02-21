@@ -428,8 +428,8 @@ const Home = () => {
         {/* Horizontal & Vertical Lines */}
         <div className="hidden lg:block relative h-full">
           <div className="hidden lg:block relative h-full md:border-t-2 border-gray top-48"></div>
-          <div className="hidden lg:block absolute left-20 -ml-0.5 w-0.5 h-[1145px] bg-gray"></div>
-          <div className="hidden lg:block absolute right-20 -ml-0.5 w-0.5 h-[1145px] bg-gray"></div>
+          <div className="hidden lg:block absolute left-20 -ml-0.5 w-0.5 h-[1153px] bg-gray"></div>
+          <div className="hidden lg:block absolute right-20 -ml-0.5 w-0.5 h-[1153px] bg-gray"></div>
         </div>
 
         <div className="container mx-auto flex flex-col justify-center items-center space-y-5 px-5 md:flex-row md:px-10 md:items-start md:space-y-0 md:space-x-12 md:align-top">
@@ -471,33 +471,33 @@ const Home = () => {
         </div>
       </section>
 
-      <section className="bg-semi-gray py-10">
+      <section className="bg-semi-gray py-10 md:py-0">
         {/* Horizontal & Vertical Lines */}
         <div className="hidden lg:block relative h-full">
-          <div className="hidden lg:block relative h-full md:border-t-2 border-gray top-48"></div>
+          <div className="hidden lg:block relative h-full md:border-t-2 border-gray top-36"></div>
           <div className="hidden lg:block absolute left-20 -ml-0.5 w-0.5 h-[1145px] bg-gray"></div>
           <div className="hidden lg:block absolute right-20 -ml-0.5 w-0.5 h-[1145px] bg-gray"></div>
         </div>
 
-        <div className="container mx-auto flex flex-col justify-center items-center space-y-2 px-5 md:flex-row md:px-10 md:items-start md:space-y-0 md:space-x-12 md:align-top">
+        <div className="container mx-auto flex flex-col justify-center items-center space-y-2 px-5 md:flex-row md:py-12 md:px-10 md:items-start md:space-y-0 md:space-x-12 md:align-top">
           <div className="flex flex-col justify-center items-center space-y-5 space-x-0 md:flex-row md:justify-start md:space-y-0 md:space-x-6">
             <div className="h-1 w-10 bg-blue md:h-8 md:w-[3px] md:-mt-8"></div>
             <h1 className="text-2xl text-center text-blue font-bold max-w-xs md:text-start md:max-w-[350px]">
               Let's keep it{" "}
-              <span className="text-yellow md:text-white">simple.</span>
+              <span className="text-yellow md:text-blue">simple.</span>
             </h1>
           </div>
 
           <div className="hidden md:block h-12 w-[1px] bg-gray"></div>
 
           <div className="max-w-xs">
-            <p className="text-lg text-blue text-center font-normal md:text-start">
+            <p className="text-lg text-blue text-center font-normal md:text-start md:text-gray">
               Choose a plan that's right for you.
             </p>
           </div>
         </div>
 
-        <div className="flex flex-col space-y-1">
+        <div className="flex flex-col space-y-1 space-x-0 md:flex-row md:-space-x-10 md:space-y-0 md:justify-center md:items-start md:py-14">
           {PRICING.map((pricing, idx) => (
             <PricingCard
               key={idx}
@@ -507,6 +507,7 @@ const Home = () => {
               planDetails={pricing.planDetails}
               planFeature={pricing.planFeatures}
               paymentPlan={pricing.paymentPlan}
+              recommendPlan={pricing?.recommended}
             />
           ))}
         </div>

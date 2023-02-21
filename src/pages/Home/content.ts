@@ -108,7 +108,7 @@ export const PRICING = [
       "Design queue",
       "Unlimited brands",
       "Unlimited stock photography"
-    ]
+    ],
   },
 
   {
@@ -122,7 +122,8 @@ export const PRICING = [
       "Unlimited brands",
       "Unlimited stock photography",
       "Pause or cancel anytime"
-    ]
+    ],
+    recommended: true
   },
 
   {
@@ -135,6 +136,6 @@ export const PRICING = [
       "Design queue",
       "Unlimited brands",
       "Unlimited stock photography"
-    ]
+    ],
   },
 ]
