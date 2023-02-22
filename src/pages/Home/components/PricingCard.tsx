@@ -24,11 +24,13 @@ const PricingCard = (props: PricingCardProps) => {
 
   return (
     <div
-      className={`container mx-auto px-5 py-5 md:container-none md:mx-0 md:w-[379px]`}
+      className={`${
+        recommendPlan ? "mt-0" : "mt-0"
+      } container mx-auto px-5 py-5 md:container-none md:mx-0 md:w-[413px]`}
     >
       <div className={`${headingColor}`}>
         {recommendPlan && (
-          <div className="pt-4 md:pb-20">
+          <div className="pt-4 md:pb-12">
             <div className="w-full bg-black opacity-[0.17] py-3 flex justify-center items-center">
               <p className="text-center text-white capitalize">
                 recommended for you

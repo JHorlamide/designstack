@@ -10,6 +10,8 @@ import Features2 from "./components/Features2";
 import { Link } from "react-router-dom";
 import { DESIGN_TYPE, PRICING } from "./content";
 import PricingCard from "./components/PricingCard";
+import Disclosure from "./components/Disclosure";
+import FooterMobile from "../../components/Footer/Footer";
 
 const Home = () => {
   return (
@@ -474,15 +476,15 @@ const Home = () => {
       <section className="bg-semi-gray py-10 md:py-0">
         {/* Horizontal & Vertical Lines */}
         <div className="hidden lg:block relative h-full">
-          <div className="hidden lg:block relative h-full md:border-t-2 border-gray top-36"></div>
-          <div className="hidden lg:block absolute left-20 -ml-0.5 w-0.5 h-[1145px] bg-gray"></div>
-          <div className="hidden lg:block absolute right-20 -ml-0.5 w-0.5 h-[1145px] bg-gray"></div>
+          <div className="hidden lg:block relative h-full md:border-t-2 border-gray top-52"></div>
+          <div className="hidden lg:block absolute left-[154px] top-[210px] -ml-0.5 w-0.5 h-[420px] bg-gray"></div>
+          <div className="hidden lg:block absolute right-[153px] top-[210px] -ml-0.5 w-0.5 h-[420px] bg-gray"></div>
         </div>
 
         <div className="container mx-auto flex flex-col justify-center items-center space-y-2 px-5 md:flex-row md:py-12 md:px-10 md:items-start md:space-y-0 md:space-x-12 md:align-top">
           <div className="flex flex-col justify-center items-center space-y-5 space-x-0 md:flex-row md:justify-start md:space-y-0 md:space-x-6">
-            <div className="h-1 w-10 bg-blue md:h-8 md:w-[3px] md:-mt-8"></div>
-            <h1 className="text-2xl text-center text-blue font-bold max-w-xs md:text-start md:max-w-[350px]">
+            <div className="h-1 w-10 bg-blue md:hidden md:h-8 md:w-[3px] md:-mt-8"></div>
+            <h1 className="text-2xl text-center text-blue font-bold max-w-xs md:text-3xl md:text-start md:max-w-[350px]">
               Let's keep it{" "}
               <span className="text-yellow md:text-blue">simple.</span>
             </h1>
@@ -491,13 +493,13 @@ const Home = () => {
           <div className="hidden md:block h-12 w-[1px] bg-gray"></div>
 
           <div className="max-w-xs">
-            <p className="text-lg text-blue text-center font-normal md:text-start md:text-gray">
+            <p className="text-lg text-blue text-center font-normal md:text-xl md:text-start md:text-gray md:max-w-[280px]">
               Choose a plan that's right for you.
             </p>
           </div>
         </div>
 
-        <div className="flex flex-col space-y-1 space-x-0 md:flex-row md:-space-x-10 md:space-y-0 md:justify-center md:items-start md:py-14">
+        <div className="flex flex-col space-y-1 space-x-0 md:flex-row md:-space-x-10 md:space-y-0 md:justify-center md:items-center md:py-14">
           {PRICING.map((pricing, idx) => (
             <PricingCard
               key={idx}
@@ -512,6 +514,76 @@ const Home = () => {
           ))}
         </div>
       </section>
+
+      <section className="bg-light-black py-16">
+        {/* Horizontal & Vertical Lines */}
+        <div className="relative h-full border-gray">
+          <div className="hidden lg:block absolute top-[200px]  w-full h-0.5 bg-gray"></div>
+          <div className="hidden lg:block absolute left-20 -ml-0.5 w-0.5 h-[1270px] bg-gray"></div>
+          <div className="hidden lg:block absolute right-20 -ml-0.5 w-0.5 h-[1270px] bg-gray"></div>
+        </div>
+
+        <div className="h-0.5 w-full bg-gray"></div>
+
+        <div className="py-5 md:py-0">
+          <div className="container mx-auto flex flex-col justify-center items-center space-y-2 px-5 md:flex-row md:py-12 md:px-10 md:items-start md:space-y-0 md:space-x-12 md:align-top">
+            <div className="flex flex-col justify-center items-center space-y-5 space-x-0 md:flex-row md:justify-start md:space-y-0 md:space-x-6">
+              <div className="h-1 w-10 bg-white md:hidden md:h-8 md:w-[3px] md:-mt-8"></div>
+              <h1 className="text-2xl text-center text-white font-bold max-w-xs md:text-3xl md:text-start md:max-w-sm">
+                Frequently <br className="hidden md:block" />
+                Asked{" "}
+                <span className="text-yellow md:text-white">Questions.</span>
+              </h1>
+            </div>
+
+            <div className="hidden md:block h-20 w-[1px] bg-gray"></div>
+
+            <div className="max-w-xs">
+              <p className="text-lg text-white text-center font-normal md:text-xl md:text-start md:text-gray md:max-w-[280px]">
+                Check out our frequently asked questions for answers.
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <div className="px-5 py-5">
+          <Disclosure />
+        </div>
+
+        <div className="flex justify-center items-center py-0 md:py-10">
+          <a href="#/" className="text-lg border-b font-semibold text-blue">
+            View all FAQs
+          </a>
+        </div>
+      </section>
+
+      <section className="bg-semi-gray py-12">
+        <div className="justify-center items-center">
+          <div className="py-5 md:py-0 md:border md:mx-48">
+            <div className="container mx-auto flex flex-col justify-center items-center space-y-2 px-5 md:py-12">
+              <div className="flex flex-col justify-center items-center space-y-5 space-x-0 md:flex-row md:justify-start md:space-y-0 md:space-x-6">
+                <div className="h-1 w-10 bg-dark-blue md:hidden md:h-8 md:w-[3px] md:-mt-8"></div>
+                <h1 className="text-2xl text-center text-dark-blue font-bold max-w-xs md:text-3xl md:max-w-lg">
+                  See if DesigStack is right for you. (It totally is.)
+                </h1>
+              </div>
+
+              <p className="text-lg text-gray text-center font-normal max-w-[260px] md:text-[20px] md:max-w-sm md:mt-3">
+                Perks so good you'll never need to go anywhere else for your
+                design. Seriously.
+              </p>
+
+              <div className="py-5 md:py-10">
+                <CustomBtn className="py-4 px-2 bg-blue font-bold text-white w-52">
+                  Get started
+                </CustomBtn>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <FooterMobile />
     </Fragment>
   );
 };
