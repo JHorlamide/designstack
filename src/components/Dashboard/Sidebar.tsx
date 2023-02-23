@@ -1,0 +1,106 @@
+import React from "react";
+import { NavLink } from "react-router-dom";
+import CustomBtn from "../CustomBtn/CustomBtn";
+
+function classNames(...classes: any) {
+  return classes.filter(Boolean).join(" ");
+}
+
+const routes = [
+  {
+    id: 1,
+    path: "/personal-info",
+    title: "Personal Information",
+    icon: "/personal_info.svg",
+  },
+  {
+    id: 2,
+    path: "/auth",
+    title: "Login & Password",
+    icon: "/login_pass.svg",
+  },
+  {
+    id: 3,
+    path: "/membership-setting",
+    title: "Membership Settings",
+    icon: "/membership_settings.svg",
+  },
+  {
+    id: 4,
+    path: "/logout",
+    title: "Logout",
+    icon: "/logout.svg",
+  },
+];
+
+const Sidebar = () => {
+  return (
+    <div className="w-full flex flex-col space-y-8">
+      <div className="bg-white flex flex-col rounded-md">
+        <div className="border-b-[1px] border-b-gray py-4 px-3">
+          <h1 className="text-sm font-bold">Account</h1>
+        </div>
+
+        <div className="flex flex-col">
+          {routes.map((route) => (
+            <NavLink
+              key={route.id}
+              to={route.path}
+              className={({ isActive }) =>
+                classNames(
+                  isActive
+                    ? "flex space-x-3 py-3 px-3 bg-black border-l-2 border-l-purple text-white"
+                    : "flex space-x-3 py-3 px-3 text-black"
+                )
+              }
+            >
+              <img src={route.icon} alt="" className="w-[28px] h-[28px]" />
+              <p className="text-sm">{route.title}</p>
+            </NavLink>
+          ))}
+        </div>
+      </div>
+
+      <div className="bg-white flex flex-col rounded-md">
+        <div className="border-b-[1px] border-b-gray py-4 px-3">
+          <h1 className="text-sm font-bold capitalize">payment method</h1>
+        </div>
+
+        <div className="flex flex-col space-y-3 px-5 py-3">
+          <div className="flex items-center space-x-5">
+            <div className="">
+              <img src="/bank_logo.png" alt="" />
+            </div>
+
+            <div className="flex flex-col space-y-0.5">
+              <p className="">Bank of America</p>
+              <small>**** _ 9966</small>
+            </div>
+          </div>
+
+          <div className="flex items-center space-x-5">
+            <div className="">
+              <img src="/master_card.png" alt="" />
+            </div>
+
+            <div className="flex flex-col space-y-0.5">
+              <p className="">Mastercard</p>
+              <small>**** _ 2478</small>
+            </div>
+          </div>
+        </div>
+
+        <div className="border-t border-b-light-gray py-4 px-3">
+          <CustomBtn
+            leftIcon={<img src="/plus_icon.png" className="pr-2" />}
+            className="flex items-center justify-between capitalize px-4"
+          >
+            add payment method
+          </CustomBtn>
+        </div>
+      </div>
+    </div>
+  );
+};
+
+export default Sidebar;

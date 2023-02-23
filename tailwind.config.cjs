@@ -26,6 +26,7 @@ module.exports = {
       purple: "#FF5CF4",
       pink: "#FF5CF4",
       orange: "#FF8364",
+      red: "#FF6A55",
       "light-dark": "#2B2B2B",
       "dark-gray": "#333333",
       "light-gray": "#F4F4F4",
@@ -36,6 +37,7 @@ module.exports = {
       "light-purple": "#9C91FC",
       "light-blue": "#D0ECF5",
       "dark-blue": "#46418E",
+      "semi-gray": "#6B6B6B",
     },
 
     backgroundImage: {
