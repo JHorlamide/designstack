@@ -9,7 +9,7 @@ export default function Example() {
           <Disclosure key={qa.no}>
             {({ open }) => (
               <div
-                className={`${open ? "bg-light-blue md:bg-semi-gray" : ""}`}
+                className={`${open ? "bg-light-blue md:bg-light-gray" : ""}`}
               >
                 <Disclosure.Button
                   className={`flex w-full justify-between rounded-lg px-4 py-2 text-left text-sm font-medium text-black focus:outline-none focus-visible:ring focus-visible:ring-white focus-visible:ring-opacity-75`}

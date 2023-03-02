@@ -1,11 +1,10 @@
 import React, { InputHTMLAttributes } from "react";
 import { FieldValues, UseFormRegister } from "react-hook-form";
 
-
 interface InputProps extends InputHTMLAttributes<HTMLInputElement> {
   inputType?: string;
   id: string;
-  label: string;
+  label?: string;
   required?: boolean;
   type: string;
   register: UseFormRegister<FieldValues>;
@@ -13,6 +12,7 @@ interface InputProps extends InputHTMLAttributes<HTMLInputElement> {
   className: string;
   validationSchema?: any;
   parentClassName?: string;
+  placeholder?: string;
 }
 
 const Input: React.FC<InputProps> = ({
@@ -26,17 +26,19 @@ const Input: React.FC<InputProps> = ({
   inputType,
   parentClassName,
   validationSchema,
+  placeholder,
   ...rest
 }) => {
   return (
     <div className={parentClassName}>
-      <label htmlFor={id}>{label}</label>
+      {label && <label htmlFor={id}>{label}</label>}
 
       <input
         id={id}
         type={type}
         {...register(id, validationSchema)}
         className={`${errors && errors[id]?.type && "border-red"} ${className}`}
+        placeholder={placeholder}
         {...rest}
       />
       {errors && errors[id]?.type === "required" && (
@@ -49,4 +51,4 @@ const Input: React.FC<InputProps> = ({
   );
 };
 
-export default Input
+export default Input;

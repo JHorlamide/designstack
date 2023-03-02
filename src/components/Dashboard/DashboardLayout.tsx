@@ -1,9 +1,14 @@
 import React from "react";
 import Sidebar from "./Sidebar";
 
-const SidebarLayout = ({ children }: { children: React.ReactNode }) => {
+interface IProps {
+  children: React.ReactNode;
+  bgHight?: string;
+}
+
+const DashboardLayout = ({ children, bgHight }: IProps) => {
   return (
-    <div className="bg-light-gray h-auto">
+    <div className={`bg-light-gray ${bgHight}`}>
       <div className="container mx-auto grid grid-cols-12 gap-x-5 py-16 w-full">
         <div className="col-span-3">
           <Sidebar />
@@ -15,4 +20,4 @@ const SidebarLayout = ({ children }: { children: React.ReactNode }) => {
   );
 };
 
-export default SidebarLayout;
+export default DashboardLayout;

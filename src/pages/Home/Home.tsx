@@ -293,7 +293,7 @@ const Home = () => {
       </section>
 
       {/* It’s “you’ll never go back” better */}
-      <section className="bg-semi-gray py-20">
+      <section className="bg-light-gray py-20">
         <div className="container mx-auto flex flex-col justify-center items-center space-y-8 space-x-0 px-5 md:space-y-24 md:space-x-10">
           <div className="flex flex-col space-y-5 space-x-0 md:flex-row md:space-y-0 md:space-x-16">
             <div className="flex flex-col justify-center items-center space-y-3 md:justify-start md:items-start md:flex-row md:space-x-10">
@@ -473,7 +473,7 @@ const Home = () => {
         </div>
       </section>
 
-      <section className="bg-semi-gray py-10 md:py-0">
+      <section className="bg-light-gray py-10 md:py-0">
         {/* Horizontal & Vertical Lines */}
         <div className="hidden lg:block relative h-full">
           <div className="hidden lg:block relative h-full md:border-t-2 border-gray top-52"></div>
@@ -557,7 +557,7 @@ const Home = () => {
         </div>
       </section>
 
-      <section className="bg-semi-gray py-12">
+      <section className="bg-light-gray py-12">
         <div className="justify-center items-center">
           <div className="py-5 md:py-0 md:border md:mx-48">
             <div className="container mx-auto flex flex-col justify-center items-center space-y-2 px-5 md:py-12">

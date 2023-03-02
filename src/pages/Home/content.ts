@@ -190,3 +190,49 @@ export const QA = [
     answer: ""
   },
 ]
+
+
+export const MEMBERSHIP_PLAN = [
+  {
+    headingColor: "bg-light-purple",
+    amount: "$4,495/m",
+    plan: "Quarterly",
+    paymentPlan: "Paid quarterly",
+    planDetails: "Save $12,000 per year.",
+    planFeatures: [
+      "Design queue",
+      "Unlimited brands",
+      "Unlimited stock photography"
+    ],
+    recommended: false
+  },
+
+  {
+    headingColor: "bg-pink",
+    amount: "$5,495/m",
+    plan: "Monthly",
+    paymentPlan: "Pause or cancel anytime",
+    planDetails: "No minimum commitment. Pause or cancel anytime.",
+    planFeatures: [
+      "Design queue",
+      "Unlimited brands",
+      "Unlimited stock photography",
+      "Pause or cancel anytime"
+    ],
+    recommended: true
+  },
+
+  {
+    headingColor: "bg-light-purple",
+    amount: "$3,995/m",
+    plan: "Yearly",
+    paymentPlan: "Paid annually",
+    planDetails: "Save $18,000 per year.",
+    planFeatures: [
+      "Design queue",
+      "Unlimited brands",
+      "Unlimited stock photography"
+    ],
+    recommended: false
+  },
+]

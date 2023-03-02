@@ -8,3 +8,6 @@ export const LOGIN = "/login";
 
 // Admin
 export const PERSONAL_INFORMATION = "/personal-info"
+export const CHANGE_PASSWORD = "/change-password";
+export const MEMBERSHIP_SETTINGS = "/membership-setting"
+export const LOGOUT = "/logout"

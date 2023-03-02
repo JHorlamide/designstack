@@ -1,6 +1,12 @@
 import React from "react";
 import { NavLink } from "react-router-dom";
 import CustomBtn from "../CustomBtn/CustomBtn";
+import {
+  LOGOUT,
+  PERSONAL_INFORMATION,
+  CHANGE_PASSWORD,
+  MEMBERSHIP_SETTINGS,
+} from "../../routes/ROUTES_CONSTANT";
 
 function classNames(...classes: any) {
   return classes.filter(Boolean).join(" ");
@@ -9,25 +15,25 @@ function classNames(...classes: any) {
 const routes = [
   {
     id: 1,
-    path: "/personal-info",
+    path: PERSONAL_INFORMATION,
     title: "Personal Information",
     icon: "/personal_info.svg",
   },
   {
     id: 2,
-    path: "/auth",
+    path: CHANGE_PASSWORD,
     title: "Login & Password",
     icon: "/login_pass.svg",
   },
   {
     id: 3,
-    path: "/membership-setting",
+    path: MEMBERSHIP_SETTINGS,
     title: "Membership Settings",
     icon: "/membership_settings.svg",
   },
   {
     id: 4,
-    path: "/logout",
+    path: LOGOUT,
     title: "Logout",
     icon: "/logout.svg",
   },
@@ -49,7 +55,7 @@ const Sidebar = () => {
               className={({ isActive }) =>
                 classNames(
                   isActive
-                    ? "flex space-x-3 py-3 px-3 bg-black border-l-2 border-l-purple text-white"
+                    ? "flex space-x-3 py-3 px-3 bg-black border-l-4 border-l-purple text-white"
                     : "flex space-x-3 py-3 px-3 text-black"
                 )
               }

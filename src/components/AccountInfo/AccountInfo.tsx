@@ -89,7 +89,7 @@ const AccountInfo = () => {
           {/* Country & City */}
           <div className="flex space-x-6 w-full">
             {/* Country */}
-            <div className="w-[450px]">
+            <div className="w-[450px] z-10">
               <Combobox value={selectedCountry} onChange={setSelectedCountry}>
                 <Combobox.Label className={"mb-2"}>Country</Combobox.Label>
                 <div className="relative mt-1">
@@ -154,7 +154,7 @@ const AccountInfo = () => {
             </div>
 
             {/* City */}
-            <div className="w-[450px]">
+            <div className="w-[450px] z-10">
               <Combobox value={selectedCity} onChange={setSelectedCity}>
                 <Combobox.Label className={"mb-2"}>City</Combobox.Label>
                 <div className="relative mt-1">
@@ -212,6 +212,8 @@ const AccountInfo = () => {
                 </div>
               </Combobox>
             </div>
+
+            {/* < SelectOption /> */}
           </div>
 
           {/* Address & Post Code */}
