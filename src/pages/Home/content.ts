@@ -95,7 +95,7 @@ export const DESIGN_TYPE = [
     name: "Icons",
     width: "w-[75px]"
   },
-]
+];
 
 export const PRICING = [
   {
@@ -196,7 +196,9 @@ export const MEMBERSHIP_PLAN = [
   {
     headingColor: "bg-light-purple",
     amount: "$4,495/m",
+    subAmount: "10,000",
     plan: "Quarterly",
+    subscriptionType: "QUARTERLY_PLAN",
     paymentPlan: "Paid quarterly",
     planDetails: "Save $12,000 per year.",
     planFeatures: [
@@ -210,7 +212,9 @@ export const MEMBERSHIP_PLAN = [
   {
     headingColor: "bg-pink",
     amount: "$5,495/m",
+    subAmount: "5000",
     plan: "Monthly",
+    subscriptionType: "MONTHLY_PLAN",
     paymentPlan: "Pause or cancel anytime",
     planDetails: "No minimum commitment. Pause or cancel anytime.",
     planFeatures: [
@@ -225,7 +229,9 @@ export const MEMBERSHIP_PLAN = [
   {
     headingColor: "bg-light-purple",
     amount: "$3,995/m",
+    subAmount: "3000",
     plan: "Yearly",
+    subscriptionType: "YEARLY_PLAN",
     paymentPlan: "Paid annually",
     planDetails: "Save $18,000 per year.",
     planFeatures: [

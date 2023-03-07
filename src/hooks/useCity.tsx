@@ -14,9 +14,6 @@ const useCity = (countryCode: string) => {
       : cities?.filter((city) => city.match(regex));
   }, [queryCities, countryCode]);
 
-  console.log("Cities: ", cities);
-  console.log("countryCode", countryCode);
-
   return {
     selectedCity,
     setSelectedCity,

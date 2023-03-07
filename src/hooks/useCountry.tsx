@@ -20,8 +20,6 @@ const useCountry = () => {
       : countries.filter((country) => country.name.match(regex));
   }, [queryCountry]);
 
-  console.log("SelectedCountry: ", selectedCountry.name);
-
   return {
     queryCountry,
     selectedCountry,

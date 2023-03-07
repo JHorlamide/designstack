@@ -1,6 +1,6 @@
 import React from "react";
 import AdminNavbar from "../../../components/AdminNavbar/AdminNavbar";
-import SidebarLayout from "../../../components/Dashboard/DashboardLayout";
+import SidebarLayout from "../../../components/DashboardLayout/DashboardLayout";
 import DashboardHeader from "../../../components/DashboardHeader/DashboardHeader";
 import Toggle from "../../../components/Toggle/Toggle";
 import MembershipPlan from "../../../components/MembershipPlan/MembershipPlan";
@@ -26,6 +26,8 @@ const MembershipSettings = () => {
               planFeature={membership.planFeatures}
               paymentPlan={membership.paymentPlan}
               recommendPlan={membership?.recommended}
+              subscriptionType={membership.subscriptionType}
+              subAmount={membership.subAmount}
             />
           ))}
         </div>

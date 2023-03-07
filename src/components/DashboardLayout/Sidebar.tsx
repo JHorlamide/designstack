@@ -1,12 +1,14 @@
 import React from "react";
-import { NavLink } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 import CustomBtn from "../CustomBtn/CustomBtn";
 import {
   LOGOUT,
   PERSONAL_INFORMATION,
   CHANGE_PASSWORD,
   MEMBERSHIP_SETTINGS,
+  LOGIN,
 } from "../../routes/ROUTES_CONSTANT";
+import AuthContext, { AuthContextType } from "../../context/AuthProvider";
 
 function classNames(...classes: any) {
   return classes.filter(Boolean).join(" ");
@@ -31,15 +33,22 @@ const routes = [
     title: "Membership Settings",
     icon: "/membership_settings.svg",
   },
-  {
-    id: 4,
-    path: LOGOUT,
-    title: "Logout",
-    icon: "/logout.svg",
-  },
 ];
 
 const Sidebar = () => {
+  const navigate = useNavigate();
+
+  const { authUser, logOutUser } = React.useContext(
+    AuthContext
+  ) as AuthContextType;
+
+  const logOut = () => {
+    logOutUser();
+    localStorage.removeItem("_token");
+    localStorage.removeItem("_refreshToken");
+    navigate(LOGIN);
+  };
+
   return (
     <div className="w-full flex flex-col space-y-8">
       <div className="bg-white flex flex-col rounded-md">
@@ -64,6 +73,21 @@ const Sidebar = () => {
               <p className="text-sm">{route.title}</p>
             </NavLink>
           ))}
+
+          <NavLink
+            to={LOGIN}
+            onClick={logOut}
+            className={({ isActive }) =>
+              classNames(
+                isActive
+                  ? "flex space-x-3 py-3 px-3 bg-black border-l-4 border-l-purple text-white"
+                  : "flex space-x-3 py-3 px-3 text-black"
+              )
+            }
+          >
+            <img src={"/logout.svg"} alt="" className="w-[28px] h-[28px]" />
+            <p className="text-sm">Logout</p>
+          </NavLink>
         </div>
       </div>
 

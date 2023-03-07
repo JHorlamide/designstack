@@ -1,4 +1,4 @@
-import { Fragment, useState } from "react";
+import React, { Fragment, useEffect, useState } from "react";
 import { Combobox, Transition } from "@headlessui/react";
 import { useForm } from "react-hook-form";
 import Input from "../CustomInput/Input";
@@ -9,8 +9,11 @@ import useCity from "../../hooks/useCity";
 import PhoneInput from "react-phone-input-2";
 import "react-phone-input-2/lib/style.css";
 import CustomBtn from "../CustomBtn/CustomBtn";
+import AuthContext, { AuthContextType } from "../../context/AuthProvider";
 
 const AccountInfo = () => {
+  const { authUser } = React.useContext(AuthContext) as AuthContextType;
+
   const {
     queryCountry,
     selectedCountry,
@@ -33,13 +36,22 @@ const AccountInfo = () => {
     formState: { errors },
   } = useForm();
 
-  const [phoneNumber, setPhoneNumber] = useState<string>("");
-  const [pushNotification, setPushNotification] = useState<boolean>(true);
-  const [reCarEmail, setReCarEmail] = useState<boolean>(true);
+  const [firstName, setFirstName] = useState("");
+  const [lastName, setLastName] = useState("");
+  const [phoneNumber, setPhoneNumber] = useState("");
+  const [pushNotification, setPushNotification] = useState(true);
+  const [reCarEmail, setReCarEmail] = useState(true);
 
   const onSubmit = async (data: any) => {
     console.log(data);
   };
+
+  useEffect(() => {
+    if (authUser && authUser.user) {
+      setFirstName(authUser.user.name.split(" ")[0]);
+      setLastName(authUser.user.name.split(" ")[1]);
+    }
+  }, [firstName, lastName]);
 
   return (
     <div className="pt-8 w-full">
@@ -57,6 +69,7 @@ const AccountInfo = () => {
               type="text"
               label="First Name"
               errors={errors}
+              value={firstName}
               register={register}
               required={true}
               validationSchema={{
@@ -71,6 +84,7 @@ const AccountInfo = () => {
               type="text"
               label="Last Name"
               errors={errors}
+              value={lastName}
               register={register}
               required={true}
               validationSchema={{
