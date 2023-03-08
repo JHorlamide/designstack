@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { toast } from "react-hot-toast";
-import { uploadImage } from "../../api/user/user";
+import { updateUserAvatar, uploadImage } from "../../api/user/user";
 import AuthContext, { AuthContextType } from "../../context/AuthProvider";
 import CustomBtn from "../CustomBtn/CustomBtn";
 import { CustomInput } from "../CustomInput/Input";
@@ -8,11 +8,20 @@ import { CustomInput } from "../CustomInput/Input";
 const UserInfo = () => {
   const { authUser } = React.useContext(AuthContext) as AuthContextType;
 
+  const [userId, setUserId] = useState("");
+  const [avatar, setAvatar] = useState("");
   const [userAvatar, setUserAvatar] = useState<string | any>("");
   const [previewImage, setPreviewImage] = useState("");
   const [errorMessage, setErrorMessage] = useState("");
   const [imageUploadId, setImageUploadId] = useState("");
   const hiddenFileInput = React.useRef<HTMLInputElement>(null);
+
+  useEffect(() => {
+    if (authUser && authUser.user) {
+      setUserId(authUser.user._id);
+      setAvatar(authUser.user.avatar.imageUrl);
+    }
+  }, []);
 
   useEffect(() => {
     if (!userAvatar) {
@@ -83,6 +92,30 @@ const UserInfo = () => {
     setErrorMessage("");
   };
 
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    validateSelectedFileSize();
+
+    try {
+      const updateObj = {
+        avatar: imageUploadId,
+      };
+
+      const response = await updateUserAvatar(userId, updateObj);
+      if (response.status === "Success") {
+        toast.success(response.message);
+        return;
+      }
+    } catch (error: any) {
+      if (error.response) {
+        const { message } = error.response.data;
+        return toast.error(message);
+      }
+
+      toast.error(error.message);
+    }
+  };
+
   return (
     <div className="border border-light-gray rounded-md w-full px-4 py-3">
       <div className="flex justify-between items-center">
@@ -95,14 +128,14 @@ const UserInfo = () => {
                 className="rounded-full w-full h-full"
               />
             ) : (
-              <img src={"/admin_avatar.png"} alt="" className="w-full h-full" />
+              <img src={avatar} alt="" className="rounded-full w-full h-full" />
             )}
           </div>
 
           <div className="flex flex-col space-y-2">
             <h1 className="font-semibold text-lg">{authUser?.user?.name}</h1>
 
-            <form>
+            <form onSubmit={handleSubmit}>
               <CustomInput
                 id="bankLogo"
                 className="hidden"
@@ -116,9 +149,7 @@ const UserInfo = () => {
               />
 
               {errorMessage && (
-                <p className="text-sm text-start text-red">
-                  {errorMessage}
-                </p>
+                <p className="text-sm text-start text-red">{errorMessage}</p>
               )}
 
               <CustomBtn

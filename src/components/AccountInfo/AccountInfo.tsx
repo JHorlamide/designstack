@@ -10,9 +10,16 @@ import PhoneInput from "react-phone-input-2";
 import "react-phone-input-2/lib/style.css";
 import CustomBtn from "../CustomBtn/CustomBtn";
 import AuthContext, { AuthContextType } from "../../context/AuthProvider";
+import { updateUserDetails } from "../../api/user/user";
+import { toast } from "react-hot-toast";
 
 const AccountInfo = () => {
   const { authUser } = React.useContext(AuthContext) as AuthContextType;
+  const [userId, setUserId] = useState("");
+  const [userEmail, setUserEmail] = useState("");
+  const [phoneNumber, setPhoneNumber] = useState("");
+  const [pushNotification, setPushNotification] = useState(true);
+  const [reCarEmail, setReCarEmail] = useState(true);
 
   const {
     queryCountry,
@@ -33,25 +40,52 @@ const AccountInfo = () => {
   const {
     register,
     handleSubmit,
+    setValue,
     formState: { errors },
   } = useForm();
 
-  const [firstName, setFirstName] = useState("");
-  const [lastName, setLastName] = useState("");
-  const [phoneNumber, setPhoneNumber] = useState("");
-  const [pushNotification, setPushNotification] = useState(true);
-  const [reCarEmail, setReCarEmail] = useState(true);
-
   const onSubmit = async (data: any) => {
-    console.log(data);
+    try {
+      const userObj = {
+        email: userEmail,
+        phoneNumber,
+        city: selectedCity,
+        country: selectedCountry.name,
+        name: `${data.firstName} ${data.lastName}`,
+        address: data.address,
+        postCode: data.postCode,
+        language: data.language,
+        currency: data.currency,
+      };
+
+      const response = await updateUserDetails(userId, userObj);
+
+      if (response.status === "Success") {
+        return toast.success(response.message);
+      }
+    } catch (error: any) {
+      if (error.response) {
+        const { data } = error.response;
+        return toast.error(data.message);
+      }
+
+      toast.error(error.message);
+    }
   };
 
   useEffect(() => {
     if (authUser && authUser.user) {
-      setFirstName(authUser.user.name.split(" ")[0]);
-      setLastName(authUser.user.name.split(" ")[1]);
+      setValue("firstName", authUser.user.name.split(" ")[0]);
+      setValue("lastName", authUser.user.name.split(" ")[1]);
+      setValue("address", authUser.user.address);
+      setValue("postCode", authUser.user.postCode);
+      setValue("currency", authUser.user.currency);
+      setValue("language", authUser.user.language);
+      setPhoneNumber(authUser.user.phoneNumber);
+      setUserId(authUser.user._id);
+      setUserEmail(authUser.user.email);
     }
-  }, [firstName, lastName]);
+  }, []);
 
   return (
     <div className="pt-8 w-full">
@@ -69,7 +103,6 @@ const AccountInfo = () => {
               type="text"
               label="First Name"
               errors={errors}
-              value={firstName}
               register={register}
               required={true}
               validationSchema={{
@@ -84,7 +117,6 @@ const AccountInfo = () => {
               type="text"
               label="Last Name"
               errors={errors}
-              value={lastName}
               register={register}
               required={true}
               validationSchema={{
@@ -247,7 +279,7 @@ const AccountInfo = () => {
             />
 
             <Input
-              id="postalCode"
+              id="postCode"
               type="text"
               label="Post Code"
               errors={errors}

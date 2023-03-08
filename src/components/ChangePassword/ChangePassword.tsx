@@ -1,10 +1,18 @@
-import React, { useCallback } from "react";
+import React, { useCallback, useEffect, useState } from "react";
 import Input from "../CustomInput/Input";
 import { useForm } from "react-hook-form";
 import CustomBtn from "../CustomBtn/CustomBtn";
 import { Link } from "react-router-dom";
+import AuthContext, { AuthContextType } from "../../context/AuthProvider";
+import { resetPassword } from "../../api/user/user";
+import { toast } from "react-hot-toast";
+import { checkTargetForNewValues } from "framer-motion";
 
 const ChangePassword = () => {
+  const { authUser, logOutUser } = React.useContext(
+    AuthContext
+  ) as AuthContextType;
+  const [userId, setUserId] = useState("");
   const {
     register,
     handleSubmit,
@@ -12,10 +20,35 @@ const ChangePassword = () => {
     reset,
   } = useForm();
 
-  const onSubmit = useCallback((data: any) => {
+  useEffect(() => {
+    if (authUser && authUser.user) {
+      setUserId(authUser.user._id);
+      return;
+    }
+  }, [userId]);
+
+  const onSubmit = async (data: any) => {
+    try {
+      const updateObj = { userId, ...data };
+      console.log(updateObj);
+      const response = await resetPassword(updateObj);
+      if (response.status === "Success") {
+        toast.success(response.message);
+        return logOutUser();
+      }
+
+      toast.error(response.message);
+    } catch (error: any) {
+      if (error.response) {
+        const { data } = error.response;
+        return toast.error(data.message);
+      }
+
+      toast.error(error.message);
+    }
     console.log(data);
     reset();
-  }, []);
+  };
 
   return (
     <div className="flex flex-col space-y-4">
@@ -33,7 +66,7 @@ const ChangePassword = () => {
         <div className="col-span-8 space-y-12">
           <div className="flex flex-col space-y-6">
             <Input
-              id="oldPassword"
+              id="password"
               type="password"
               label="Old Password"
               errors={errors}

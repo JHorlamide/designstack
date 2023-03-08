@@ -8,3 +8,15 @@ export interface IRegisterUser {
   email: string;
   password: string;
 }
+
+export interface IUpdateUser {
+  name: string;
+  email: string;
+  address: string;
+  postCode: string;
+  phoneNumber: string;
+  language: string;
+  currency: string;
+  country: string;
+  city: string | never[];
+}

@@ -24,7 +24,7 @@ const PersistLogin = () => {
 
   return (
     <Fragment>
-      {isLoading ? <p className="text-center py-10">Loading</p> : <Outlet />}
+      {isLoading ? <p className="text-center py-10">Loading...</p> : <Outlet />}
     </Fragment>
   );
 };

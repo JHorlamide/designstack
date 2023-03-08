@@ -196,7 +196,7 @@ export const MEMBERSHIP_PLAN = [
   {
     headingColor: "bg-light-purple",
     amount: "$4,495/m",
-    subAmount: "10,000",
+    subAmount: "10000",
     plan: "Quarterly",
     subscriptionType: "QUARTERLY_PLAN",
     paymentPlan: "Paid quarterly",

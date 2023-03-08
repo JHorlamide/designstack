@@ -1,8 +1,21 @@
 import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
+import { LOGIN } from "../routes/ROUTES_CONSTANT";
 
 export interface IUser {
+  _id: string;
   name: string;
   email: string;
+  avatar: {
+    imageUrl: string;
+  };
+  isSubscribed: boolean;
+  subscriptionType: string;
+  address: string;
+  postCode: string;
+  language: string;
+  currency: string;
+  phoneNumber: string;
 }
 
 export interface AuthType {
@@ -22,6 +35,7 @@ const AuthContext = React.createContext<AuthContextType | undefined>(
 );
 
 export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
+  const navigate = useNavigate();
   const [authUser, setAuthUser] = useState<AuthType>({
     user: null,
     accessToken: null,
@@ -43,6 +57,8 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
       accessToken: "",
       refreshToken: "",
     });
+
+    navigate(LOGIN);
   };
 
   return (

@@ -10,3 +10,13 @@ export const subscribe = async (payload: ISubscription) => {
   const { data } = await axiosPrivate.post("/billing/subscription", payload);
   return data;
 };
+
+export const getSubDetails = async (userId: string, options = {}) => {
+  const { data } = await axiosPrivate.get(`/billing/subscription/${userId}/details`, options);
+  return data;
+};
+
+export const getSubManagementLink = async (options = {}) => {
+  const { data } = await axiosPrivate.get("/billing/subscription/manage", options);
+  return data;
+};

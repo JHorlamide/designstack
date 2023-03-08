@@ -37,8 +37,6 @@ const Login = () => {
       .then((response) => {
         setLoading(false);
 
-        console.log([response.data])
-
         const authData: AuthType = {
           user: response.data.user,
           accessToken: response.data.accessToken,

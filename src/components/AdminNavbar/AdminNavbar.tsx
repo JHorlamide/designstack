@@ -1,9 +1,19 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { Menu, Transition } from "@headlessui/react";
 import { Fragment } from "react";
+import AuthContext, { AuthContextType } from "../../context/AuthProvider";
 
 const AdminNavbar = () => {
+  const { authUser } = React.useContext(AuthContext) as AuthContextType;
+  const [avatar, setAvatar] = useState("");
+
+  useEffect(() => {
+    if (authUser && authUser.user) {
+      setAvatar(authUser.user.avatar.imageUrl);
+    }
+  }, []);
+
   return (
     <div className="py-4 px-7">
       <div className="flex justify-between">
@@ -31,10 +41,15 @@ const AdminNavbar = () => {
                   <Menu.Button className="inline-flex w-full justify-center">
                     <div className="flex space-x-2 items-center">
                       <img
+                        src={avatar}
+                        alt=""
+                        className="rounded-full w-14 h-12"
+                      />
+                      {/* <img
                         src="/admin_avatar.png"
                         alt="user-avatar"
                         className="w-16 h-10"
-                      />
+                      /> */}
 
                       <img
                         src="/arrow_down.svg"

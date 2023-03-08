@@ -1,6 +1,10 @@
-import { Fragment, useContext, useState } from "react";
+import { Fragment, useContext, useEffect, useState } from "react";
 import { toast } from "react-hot-toast";
-import { subscribe } from "../../api/subscription/subscription.api";
+import {
+  subscribe,
+  getSubDetails,
+  getSubManagementLink,
+} from "../../api/subscription/subscription.api";
 import AuthContext, { AuthContextType } from "../../context/AuthProvider";
 import CustomBtn from "../CustomBtn/CustomBtn";
 import CheckoutModal from "./CheckoutModal";
@@ -18,7 +22,6 @@ interface IProps {
 }
 
 const MembershipPlan = (props: IProps) => {
-  const { authUser } = useContext(AuthContext) as AuthContextType;
   const {
     headingColor,
     amount,
@@ -31,9 +34,21 @@ const MembershipPlan = (props: IProps) => {
     recommendPlan,
   } = props;
 
+  const { authUser } = useContext(AuthContext) as AuthContextType;
+  const [userSubType, setUserSubType] = useState("");
   const [openModal, setOpenModal] = useState(false);
   const [loading, setLoading] = useState(false);
+  const [actionType, setActionType] = useState("");
   const [checkoutLink, setCheckoutLink] = useState("");
+  const [subDetails, setSubDetails] = useState<any>();
+  const [userId, setUserId] = useState("");
+
+  useEffect(() => {
+    if (authUser && authUser.user) {
+      setUserId(authUser.user._id);
+      setUserSubType(authUser.user.subscriptionType);
+    }
+  }, [userSubType]);
 
   const handleSubscription = async () => {
     try {
@@ -48,6 +63,7 @@ const MembershipPlan = (props: IProps) => {
       const response = await subscribe(subscriptionPayload);
       if (response.status === "Success") {
         setOpenModal(true);
+        setActionType("subscribe");
         setCheckoutLink(response.data.checkOutUrl);
       }
 
@@ -58,13 +74,62 @@ const MembershipPlan = (props: IProps) => {
     }
   };
 
+  const handleCancelSub = async () => {
+    //This will cancel the request when the component unmount
+    const controller = new AbortController();
+    const { signal } = controller;
+
+    try {
+      setLoading(true);
+
+      const response = await getSubManagementLink({ signal });
+      if (response.status === "Success") {
+        setOpenModal(true);
+        setActionType("cancel");
+        setCheckoutLink(response.data.link);
+      }
+
+      setLoading(false);
+    } catch (error: any) {
+      setLoading(false);
+      if (signal.aborted) return;
+      toast.error(error.message);
+    }
+  };
+
   const closeModal = () => {
     setOpenModal(false);
   };
 
+  const fetchSubDetails = async () => {
+    //This will cancel the request when the component unmount
+    const controller = new AbortController();
+    const { signal } = controller;
+
+    try {
+      setLoading(true);
+      if (userId) {
+        const response = await getSubDetails(userId, { signal });
+        if (response.status === "Success") {
+          setLoading(false);
+          setSubDetails(response.data);
+        }
+      }
+    } catch (error: any) {
+      setLoading(false);
+      if (signal.aborted) return;
+      toast.error(error.message);
+    }
+  };
+
+  useEffect(() => {
+    fetchSubDetails();
+  }, [userId]);
+
   return (
     <Fragment>
       <CheckoutModal
+        actionType={actionType}
         isOpen={openModal}
         link={checkoutLink}
         closeModal={closeModal}
@@ -126,11 +191,20 @@ const MembershipPlan = (props: IProps) => {
             </div>
           </div>
 
-          {recommendPlan ? (
+          {subscriptionType === userSubType ? (
             <div className="flex justify-center items-center pt-5">
-              <p className="text-center text-green font-semibold capitalize">
-                your current plan
-              </p>
+              <div className="flex flex-col justify-center items-center pt-12">
+                <CustomBtn className="mx-auto px-9 py-4 cursor-default text-center text-green font-semibold capitalize">
+                  your current plan
+                </CustomBtn>
+
+                <CustomBtn
+                  onClick={handleCancelSub}
+                  className="text-red text-xs outline-none"
+                >
+                  {loading ? "loading..." : "Cancel subscription"}
+                </CustomBtn>
+              </div>
             </div>
           ) : (
             <div className="flex justify-center items-center pt-12">

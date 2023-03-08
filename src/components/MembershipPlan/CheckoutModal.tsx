@@ -2,12 +2,18 @@ import { Dialog, Transition } from "@headlessui/react";
 import { Fragment, useState } from "react";
 
 interface IProps {
+  actionType: string;
   isOpen: boolean;
   link: string;
   closeModal: () => void;
 }
 
-export default function CheckoutModal({ isOpen, link, closeModal }: IProps) {
+export default function CheckoutModal({
+  actionType,
+  isOpen,
+  link,
+  closeModal,
+}: IProps) {
   return (
     <>
       <Transition appear show={isOpen} as={Fragment}>
@@ -36,23 +42,47 @@ export default function CheckoutModal({ isOpen, link, closeModal }: IProps) {
                 leaveTo="opacity-0 scale-95"
               >
                 <Dialog.Panel className="w-full max-w-md transform overflow-hidden rounded-2xl bg-white p-6 text-left align-middle shadow-xl transition-all">
-                  <Dialog.Title
-                    as="h3"
-                    className="text-lg font-medium leading-6 text-gray"
-                  >
-                    Please click on the button below to subscribe
-                  </Dialog.Title>
+                  {actionType === "subscribe" ? (
+                    <>
+                      <Dialog.Title
+                        as="h3"
+                        className="text-lg font-medium leading-6 text-gray"
+                      >
+                        Please click on the button below to subscribe
+                      </Dialog.Title>
 
-                  <div className="mt-8">
-                    <a
-                      href={link}
-                      target="_blank"
-                      className="inline-flex justify-center rounded-md border border-light-blue bg-light-blue px-4 py-2 text-sm font-medium text-blue"
-                      onClick={closeModal}
-                    >
-                      Checkout
-                    </a>
-                  </div>
+                      <div className="mt-8">
+                        <a
+                          href={link}
+                          target="_blank"
+                          className={`inline-flex justify-center rounded-md border border-light-blue bg-light-blue px-4 py-2 text-sm font-medium text-blue`}
+                          onClick={closeModal}
+                        >
+                          Continue
+                        </a>
+                      </div>
+                    </>
+                  ) : (
+                    <>
+                      <Dialog.Title
+                        as="h3"
+                        className="text-lg font-medium leading-6 text-gray"
+                      >
+                        Please click on the button below to cancel subscription
+                      </Dialog.Title>
+
+                      <div className="mt-8">
+                        <a
+                          href={link}
+                          target="_blank"
+                          className={`inline-flex justify-center rounded-md border border-red bg-red px-4 py-2 text-sm font-medium text-white`}
+                          onClick={closeModal}
+                        >
+                          Continue
+                        </a>
+                      </div>
+                    </>
+                  )}
                 </Dialog.Panel>
               </Transition.Child>
             </div>
