@@ -14,6 +14,75 @@ export default function CheckoutModal({
   link,
   closeModal,
 }: IProps) {
+  let content;
+
+  if (actionType === "subscribe") {
+    content = (
+      <>
+        <Dialog.Title
+          as="h3"
+          className="text-lg font-medium leading-6 text-gray"
+        >
+          Please click on the button below to subscribe
+        </Dialog.Title>
+
+        <div className="mt-8">
+          <a
+            href={link}
+            target="_blank"
+            className={`inline-flex justify-center rounded-md border border-light-blue bg-light-blue px-4 py-2 text-sm font-medium text-blue`}
+            onClick={closeModal}
+          >
+            Continue
+          </a>
+        </div>
+      </>
+    );
+  } else if (actionType === "cancel") {
+    content = (
+      <>
+        <Dialog.Title
+          as="h3"
+          className="text-lg font-medium leading-6 text-gray"
+        >
+          Please click on the button below to cancel subscription
+        </Dialog.Title>
+
+        <div className="mt-8">
+          <a
+            href={link}
+            target="_blank"
+            className={`inline-flex justify-center rounded-md border border-red bg-red px-4 py-2 text-sm font-medium text-white`}
+            onClick={closeModal}
+          >
+            Continue
+          </a>
+        </div>
+      </>
+    );
+  } else {
+    content = (
+      <>
+        <Dialog.Title
+          as="h3"
+          className="text-lg font-medium leading-6 text-gray"
+        >
+          Please click on the button below to add new card.
+        </Dialog.Title>
+
+        <div className="mt-8">
+          <a
+            href={link}
+            target="_blank"
+            className={`inline-flex justify-center rounded-md border border-light-blue bg-light-blue px-4 py-2 text-sm font-medium text-white`}
+            onClick={closeModal}
+          >
+            Continue
+          </a>
+        </div>
+      </>
+    );
+  }
   return (
     <>
       <Transition appear show={isOpen} as={Fragment}>
@@ -42,47 +111,7 @@ export default function CheckoutModal({
                 leaveTo="opacity-0 scale-95"
               >
                 <Dialog.Panel className="w-full max-w-md transform overflow-hidden rounded-2xl bg-white p-6 text-left align-middle shadow-xl transition-all">
-                  {actionType === "subscribe" ? (
-                    <>
-                      <Dialog.Title
-                        as="h3"
-                        className="text-lg font-medium leading-6 text-gray"
-                      >
-                        Please click on the button below to subscribe
-                      </Dialog.Title>
-
-                      <div className="mt-8">
-                        <a
-                          href={link}
-                          target="_blank"
-                          className={`inline-flex justify-center rounded-md border border-light-blue bg-light-blue px-4 py-2 text-sm font-medium text-blue`}
-                          onClick={closeModal}
-                        >
-                          Continue
-                        </a>
-                      </div>
-                    </>
-                  ) : (
-                    <>
-                      <Dialog.Title
-                        as="h3"
-                        className="text-lg font-medium leading-6 text-gray"
-                      >
-                        Please click on the button below to cancel subscription
-                      </Dialog.Title>
-
-                      <div className="mt-8">
-                        <a
-                          href={link}
-                          target="_blank"
-                          className={`inline-flex justify-center rounded-md border border-red bg-red px-4 py-2 text-sm font-medium text-white`}
-                          onClick={closeModal}
-                        >
-                          Continue
-                        </a>
-                      </div>
-                    </>
-                  )}
+                  {content}
                 </Dialog.Panel>
               </Transition.Child>
             </div>

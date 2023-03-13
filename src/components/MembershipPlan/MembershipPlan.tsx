@@ -6,6 +6,8 @@ import {
   getSubManagementLink,
 } from "../../api/subscription/subscription.api";
 import AuthContext, { AuthContextType } from "../../context/AuthProvider";
+import SubContext, { SubContextType } from "../../context/SubscriptionProvider";
+import useHandleSub from "../../hooks/useHandleSub";
 import CustomBtn from "../CustomBtn/CustomBtn";
 import CheckoutModal from "./CheckoutModal";
 
@@ -35,6 +37,8 @@ const MembershipPlan = (props: IProps) => {
   } = props;
 
   const { authUser } = useContext(AuthContext) as AuthContextType;
+  const { saveSub } = useContext(SubContext) as SubContextType;
+
   const [userSubType, setUserSubType] = useState("");
   const [openModal, setOpenModal] = useState(false);
   const [loading, setLoading] = useState(false);
@@ -49,30 +53,6 @@ const MembershipPlan = (props: IProps) => {
       setUserSubType(authUser.user.subscriptionType);
     }
   }, [userSubType]);
-
-  const handleSubscription = async () => {
-    try {
-      setLoading(true);
-
-      const subscriptionPayload = {
-        email: authUser.user ? authUser.user.email : "",
-        subscriptionType,
-        amount: subAmount,
-      };
-
-      const response = await subscribe(subscriptionPayload);
-      if (response.status === "Success") {
-        setOpenModal(true);
-        setActionType("subscribe");
-        setCheckoutLink(response.data.checkOutUrl);
-      }
-
-      setLoading(false);
-    } catch (error: any) {
-      setLoading(false);
-      toast.error(error.message);
-    }
-  };
 
   const handleCancelSub = async () => {
     //This will cancel the request when the component unmount
@@ -108,11 +88,29 @@ const MembershipPlan = (props: IProps) => {
 
     try {
       setLoading(true);
+
       if (userId) {
-        const response = await getSubDetails(userId, { signal });
+        const response = await getSubDetails({ signal });
+
         if (response.status === "Success") {
+          const {
+            data: { subDetails },
+          } = response;
+
+          const subObj = {
+            subscription: {
+              subscriptionCode: subDetails.subscriptionCode,
+              subscriptionId: subDetails.subscriptionId,
+              subscriptionReference: subDetails.subscriptionReference,
+              subscriptionStatus: subDetails.subscriptionStatus,
+              subscriptionType: subDetails.subscriptionType,
+              authorization: subDetails.authorization,
+            },
+          };
+
           setLoading(false);
-          setSubDetails(response.data);
+          setSubDetails(subDetails);
+          saveSub(subObj);
         }
       }
     } catch (error: any) {
@@ -209,7 +207,7 @@ const MembershipPlan = (props: IProps) => {
           ) : (
             <div className="flex justify-center items-center pt-12">
               <CustomBtn
-                onClick={handleSubscription}
+                onClick={handleCancelSub}
                 className="mx-auto px-9 py-4 bg-blue text-white"
               >
                 {loading ? "Loading..." : "Choose Plan"}

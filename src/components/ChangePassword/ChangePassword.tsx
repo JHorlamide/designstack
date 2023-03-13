@@ -6,7 +6,6 @@ import { Link } from "react-router-dom";
 import AuthContext, { AuthContextType } from "../../context/AuthProvider";
 import { resetPassword } from "../../api/user/user";
 import { toast } from "react-hot-toast";
-import { checkTargetForNewValues } from "framer-motion";
 
 const ChangePassword = () => {
   const { authUser, logOutUser } = React.useContext(
@@ -17,7 +16,6 @@ const ChangePassword = () => {
     register,
     handleSubmit,
     formState: { errors },
-    reset,
   } = useForm();
 
   useEffect(() => {
@@ -30,7 +28,6 @@ const ChangePassword = () => {
   const onSubmit = async (data: any) => {
     try {
       const updateObj = { userId, ...data };
-      console.log(updateObj);
       const response = await resetPassword(updateObj);
       if (response.status === "Success") {
         toast.success(response.message);
@@ -46,8 +43,6 @@ const ChangePassword = () => {
 
       toast.error(error.message);
     }
-    console.log(data);
-    reset();
   };
 
   return (

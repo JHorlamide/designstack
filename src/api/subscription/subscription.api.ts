@@ -11,8 +11,8 @@ export const subscribe = async (payload: ISubscription) => {
   return data;
 };
 
-export const getSubDetails = async (userId: string, options = {}) => {
-  const { data } = await axiosPrivate.get(`/billing/subscription/${userId}/details`, options);
+export const getSubDetails = async (options = {}) => {
+  const { data } = await axiosPrivate.get(`/billing/subscription/details`, options);
   return data;
 };
 
